@@ -1,0 +1,12 @@
+{
+  "name": "spoon-bot",
+  "version": "0.1.0",
+  "main": "src/bot.js",
+  "repository": "https://github.com/CF12/spoon-bot",
+  "author": "CF12 <brianx0011@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "node-opus": "^0.3.1"
+  }
+}
