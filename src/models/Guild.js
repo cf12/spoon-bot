@@ -1,8 +1,8 @@
 const VoiceHandler = require('./VoiceHandler')
 
 class Guild {
-  constructor () {
-    this.voiceHandler = new VoiceHandler()
+  constructor (socket) {
+    this.voiceHandler = new VoiceHandler(socket)
   }
 }
 

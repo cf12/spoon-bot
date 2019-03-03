@@ -1,16 +1,19 @@
 const ytdl = require('ytdl-core')
 
 class VoiceHandler {
-  constructor () {
+  constructor (socket) {
     this.channel = null
     this.connection = null
     this.dispatcher = null
+
+    this.socket = socket
   }
 
   join (channel) {
     channel.join()
       .then(connection => {
         console.log("[INFO] > Joined voice channel")
+        this.socket.emit('voiceStateChanged', true)
         this.connection = connection
       })
       .catch(e => {
@@ -23,6 +26,7 @@ class VoiceHandler {
     this.channel = null
     this.connection = null
     this.dispatcher = null
+    this.socket.emit('voiceStateChanged', false)
   }
 
   play (videoID) {
@@ -31,11 +35,11 @@ class VoiceHandler {
     this.dispatcher = this.connection.playStream(stream)
   }
 
-  pause() {
+  pause () {
     this.dispatcher.pause();
   }
 
-  resume(){
+  resume () {
     this.dispatcher.resume();
   }
 
