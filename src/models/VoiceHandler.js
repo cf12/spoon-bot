@@ -20,13 +20,15 @@ class VoiceHandler {
 
   leave () {
     this.connection.disconnect()
+    this.channel = null
+    this.connection = null
+    this.dispatcher = null
   }
 
   play (videoID) {
     // TODO: Stream options
     const stream = ytdl(videoID)
     this.dispatcher = this.connection.playStream(stream)
-    const receiver = this.dispatcherconnection.createReceiver();
   }
 
   pause() {
@@ -39,6 +41,10 @@ class VoiceHandler {
 
   skip(){
     this.dispatcher.end();
+  }
+
+  isPlaying () {
+    return this.connection !== null
   }
 
 }
