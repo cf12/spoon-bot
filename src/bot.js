@@ -1,16 +1,13 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
+const speech = require('@google-cloud/speech');
 const config = require("../config/config.json");
 const pf = config.prefix;
-const ytdl = require('ytdl-core');
 const Guild = require("./models/Guild");
 const Youtube = require('./models/Youtube');
-const speech = require('@google-cloud/speech');
 
-//Is this require for speech?
-const fs = require('fs');
-
+const speechClient = new speech.SpeechClient()
 const yt = new Youtube(config.ytkey)
 
 let guilds = new Map();
@@ -52,16 +49,6 @@ client.on("message", msg => {
 
         vHandler.play(id)
       })
-
-    // let videoId
-    // yt.getVideo(id)
-    //   .then(data =>{
-
-    //     //what is this
-    //     videoID = data.options.url
-
-
-    //   })
     }
 
   if (command === "LEAVE") {
@@ -79,6 +66,7 @@ client.on("message", msg => {
   if(command === "SKIP"){
     vHandler.skip();
   }
+
 
 
 
