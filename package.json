@@ -6,6 +6,7 @@
   "author": "CF12 <brianx0011@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/speech": "^2.3.0",
     "discord.js": "^11.4.2",
     "node-opus": "^0.3.1",
     "req-fast": "^0.2.18",

@@ -1,3 +1,5 @@
+const ytdl = require('ytdl-core')
+
 class VoiceHandler {
   constructor () {
     this.channel = null
@@ -20,15 +22,25 @@ class VoiceHandler {
     this.connection.disconnect()
   }
 
-  play () {
-
-    const ytdl = require('ytdl-core');
-
-    this.connection.play(ytdl(
-      'the link or something idk'
-    ));
-
+  play (videoID) {
+    // TODO: Stream options
+    const stream = ytdl(videoID)
+    this.dispatcher = this.connection.playStream(stream)
+    const receiver = this.dispatcherconnection.createReceiver();
   }
+
+  pause() {
+    this.dispatcher.pause();
+  }
+
+  resume(){
+    this.dispatcher.resume();
+  }
+
+  skip(){
+    this.dispatcher.end();
+  }
+
 }
 
 module.exports = VoiceHandler
