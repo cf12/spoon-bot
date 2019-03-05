@@ -29,20 +29,6 @@ io.on('connection', (socket) => {
   users++
   console.log(`[WS] > (User joined): ${users} user`)
 
-  record
-    .start({
-      sampleRateHertz: 16000,
-      threshold: 0.5,
-      thresholdStart: 0.8,
-      thresholdEnd: 0.6,
-      // Other options, see https://www.npmjs.com/package/node-record-lpcm16#options
-      verbose: false,
-      recordProgram: 'rec', // Try also "arecord" or "sox"
-      silence: '0.1',
-    })
-    .on('error', console.error)
-    .pipe(recognizeStream)
-
   socket.on('disconnect', () => {
     users--
     console.log(`[WS] > (User left): ${users} user`)
@@ -88,6 +74,8 @@ const recognizeStream = speechClient
       vHandler.pause();
     } else if (command === 'RESUME' ) {
       vHandler.resume();
+    } else if (command === 'VOLUME' ) {
+      vHandler.setVolume(parseInt(args[0], 10));
     }
   })
 
@@ -115,6 +103,20 @@ client.on("message", msg => {
     const channel = msg.member.voiceChannel;
 
     if (!channel) return console.error("Channel does not exist");
+
+    record
+    .start({
+      sampleRateHertz: 16000,
+      threshold: 0.5,
+      thresholdStart: 0.8,
+      thresholdEnd: 0.6,
+      // Other options, see https://www.npmjs.com/package/node-record-lpcm16#options
+      verbose: false,
+      recordProgram: 'rec', // Try also "arecord" or "sox"
+      silence: '0.1',
+    })
+    .on('error', console.error)
+    .pipe(recognizeStream)
 
     vHandler.join(channel);
   } else if (command === 'LEAVE') {

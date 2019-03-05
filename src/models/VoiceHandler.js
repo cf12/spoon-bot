@@ -47,6 +47,10 @@ class VoiceHandler {
     this.dispatcher.end();
   }
 
+  setVolume (db) {
+    this.dispatcher.setVolumeDecibels(db / 2)
+  }
+
   isPlaying () {
     return this.connection !== null
   }
