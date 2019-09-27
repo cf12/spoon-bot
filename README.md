@@ -27,7 +27,7 @@ Since this is a private project, there will be no accepted contributions other t
 * Ethan Yu
 * Joshua Hu
 ## License
-This project is under the MIT License, please check LICENSE for more details
+This project is under the MIT License, please check `LICENSE.MD` for more details
 ## Acknowledgements
 ### Special Thanks
 Special thanks to CodeDay in order for the development team to come together in order to build this program. Special thanks to Mingjie and Vincent because we love them. And huge thanks for the huge amount of caffiene and food we have ingested.
