@@ -13,7 +13,7 @@ class VoiceHandler {
     channel.join()
       .then(connection => {
         console.log("[INFO] > Joined voice channel")
-        this.socket.emit('voiceStateChanged', true)
+        // this.socket.emit('voiceStateChanged', true)
         this.connection = connection
       })
       .catch(e => {

@@ -56,7 +56,6 @@ const recognizeStream = speechClient
     console.log(msg)
     const guild = guilds.get(config.guildID)
 
-    if (!guild.voiceHandler.isPlaying()) return
 
     const command = msg[0].toUpperCase()
     const args = msg.slice(1)
@@ -84,6 +83,11 @@ const recognizeStream = speechClient
 client.login(config.token);
 client.on("ready", () => {
   console.log("[INFO] > Bot started!");
+
+  client.generateInvite()
+  .then(link => {
+    console.log(`[INFO] > ${link}`)
+  })
 });
 
 client.on("message", msg => {
